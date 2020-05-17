@@ -35,7 +35,7 @@ public class ListClientMO {
     public static int initId = 0;
 
     //public static boolean mix = true;
-    public static int p = 0;
+    public static int conflictPercent = 0;
 
     public static boolean stop = false;
 
@@ -59,8 +59,8 @@ public class ListClientMO {
 
         int numberOfOps = Integer.parseInt(args[6]);
 
-        p = Integer.parseInt(args[7]);
-        System.out.println("percent : " + p);
+        conflictPercent = Integer.parseInt(args[7]);
+        System.out.println("percent : " + conflictPercent);
 
         Client[] c = new Client[numThreads];
 
@@ -192,7 +192,7 @@ public class ListClientMO {
                 }
 
                 int r = rand.nextInt(100);
-                if (r < p) {
+                if (r < conflictPercent) {
                     op = BFTList.ADD;
                 } else {
                     op = BFTList.CONTAINS;
