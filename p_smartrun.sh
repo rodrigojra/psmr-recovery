@@ -13,16 +13,16 @@
 # limitations under the License.
 
 
- for i; do 
-    echo $i 
+#for i; do 
+#    echo $i 
      
- done
+#done
 
-echo $#
+#echo $#
 
-echo ${7}
+#echo ${7}
 
-echo "---------------- end -------------------------- "
+#echo "---------------- end -------------------------- "
 
 # replica means that replica (or server) was started and --debug will be at position 7
 replica_debug=${7}
@@ -30,13 +30,13 @@ replica_debug=${7}
 client_debug=${10} 
 
 # remove this file because if you change hosts.config or system.config you should remove this one.
-# rm -rf currentView
+#rm -rf currentView
 
 if [[ "$replica_debug" == "--debug" || "$client_debug" == "--debug" ]]; then
     echo "Debug enabled"
-    java "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=9000" -cp dist/BFT-SMaRt-Parallel.jar:lib/bft-smart.jar:lib/slf4j-api-1.5.8.jar:lib/slf4j-jdk14-1.5.8.jar:lib/netty-all-4.0.36.Final.jar:lib/commons-codec-1.5.jar $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11
+    java "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=9000" -Dlogback.configurationFile="./config/logback-console-file.xml" -cp dist/recovery4smr-20200517.jar:lib/* $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11
 else
-    java -cp dist/BFT-SMaRt-Parallel.jar:lib/bft-smart.jar:lib/slf4j-api-1.5.8.jar:lib/slf4j-jdk14-1.5.8.jar:lib/netty-all-4.0.36.Final.jar:lib/commons-codec-1.5.jar $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11
+    java -Dlogback.configurationFile="./config/logback-console-file.xml" -cp dist/recovery4smr-20200517.jar:lib/* $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11
 fi
 
 

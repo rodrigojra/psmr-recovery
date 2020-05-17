@@ -7,7 +7,7 @@ For more information about how to run parallel SMR please visit https://github.c
 
 Under construction!
 
-./p_smartrun.sh demo.list.ListServerDefaultSingleRecovery 0 1 10000 false lockFree
+./p_smartrun.sh demo.list.ListServerDefaultSingleRecovery 0 0 10000 false lockFree
 
 Single thread / Single Replica
 ./p_smartrun.sh demo.list.ListServerDefaultSingleRecovery 0 0 10000 true lockFree
@@ -21,7 +21,7 @@ graph type = the graph synchronization strategy to be used. It can be coarseLock
 
 
 											  10000
-./p_smartrun.sh demo.list.ListClientMO 1 4001 10000 0 10000 false 10 10
+./p_smartrun.sh demo.list.ListClientMO 1 4001 100000 0 10000 false 10 0
 
 ./p_smartrun.sh demo.list.ListClientMO 50 4001 100000 0 10000 true 50 10
 ./p_smartrun.sh demo.list.ListClientMO <num clients> <client id> <number of requests> <interval> <maxIndex> <parallel?> <operations per request> <conflict percent>

@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<!--
+<project default="main">
+	<property name="base.dir" location="." />
+	<property name="src.dir" location="src" />
+	<property name="build.dir" location="bin" />
+	<property name="dist.dir" location="dist" />
+	<property name="lib.dir" location="lib" />
+	
+	<target name="main" depends="compile, jar" description="Main target">
+		<echo>
+            Building the .jar file.
+        </echo>
+	</target>
+	<path id="libs">
+		<fileset dir="${lib}" includes="*.jar" />
+	</path>
+
+	<target name="compile" description="Compilation target">
+		<javac classpathref="libs" source="1.7" target="1.7" destdir="${build.dir}" nowarn="on" debug="true">
+			<src path="${src.dir}" />
+		</javac>
+	</target>
+	<target name="jar" description="Compression target">
+		<jar jarfile="${dist.dir}/recovery4psmr.jar">
+			<fileset dir="${build.dir}">
+				<include name="**/*.class" />
+			</fileset>
+		</jar>
+	</target>
+</project>
+-->
+
+<project name="Recovery4SMR" default="dist" basedir=".">
+	<description>
+    Recovery for SMR  build file
+  </description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="build" location="bin" />
+	<property name="dist" location="dist" />
+	<property name="config" location="config" />
+
+	<property name="lib" value="lib" />
+
+	<path id="classpath">
+		<fileset dir="${lib}" includes="**/*.jar" />
+	</path>
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile" depends="init" description="compile the source">
+		<!-- Compile the Java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}" classpathref="classpath" source="1.7" target="1.7" nowarn="on" debug="true" />
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+		<!-- Put everything in ${build} into the recovery4smr-${DSTAMP}.jar file -->
+		<jar jarfile="${dist}/recovery4smr-${DSTAMP}.jar" basedir="${build}" />
+	</target>
+
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees and also files generated in runtime -->
+		<delete dir="${build}" />
+		<delete dir="${dist}"/>
+		<delete file="results_0.txt" />
+		<delete file="results_1.txt" />
+		<delete file="results_2.txt" />
+		<delete file="${config}/currentView" />
+	</target>
+</project>
