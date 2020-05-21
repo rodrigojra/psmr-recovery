@@ -7,10 +7,10 @@ For more information about how to run parallel SMR please visit https://github.c
 
 Under construction!
 
-./p_smartrun.sh demo.list.ListServerDefaultSingleRecovery 0 0 10000 false lockFree
+./p_smartrun.sh demo.list.ListServerSequentialRecovery 0 0 10000 false lockFree
 
 Single thread / Single Replica
-./p_smartrun.sh demo.list.ListServerDefaultSingleRecovery 0 0 10000 true lockFree
+./p_smartrun.sh demo.list.ListServerSequentialRecovery 0 0 10000 true lockFree
 
 
 process id = the process identifier

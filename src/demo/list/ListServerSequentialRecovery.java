@@ -39,8 +39,9 @@ import parallelism.SequentialServiceReplica;
 import parallelism.late.CBASEServiceReplica;
 import parallelism.late.COSType;
 import parallelism.late.ConflictDefinition;
+import recovery.SequentialRecovery;
 
-public final class ListServerDefaultSingleRecovery extends DefaultSingleRecoverable {
+public final class ListServerSequentialRecovery extends SequentialRecovery {
 
 	private LinkedList<Integer> existentList = new LinkedList<Integer>();
 	private int counter = 0;
@@ -58,10 +59,10 @@ public final class ListServerDefaultSingleRecovery extends DefaultSingleRecovera
 		boolean late = Boolean.parseBoolean(args[3]);
 		String gType = args[4];
 
-		new ListServerDefaultSingleRecovery(processId, initialNT, entries, late, gType);
+		new ListServerSequentialRecovery(processId, initialNT, entries, late, gType);
 	}
 
-	public ListServerDefaultSingleRecovery(int id, int initThreads, int entries, boolean late, String gType) {
+	public ListServerSequentialRecovery(int id, int initThreads, int entries, boolean late, String gType) {
 
 		if (initThreads <= 0) {
 			System.out.println("Replica in sequential execution model.");
@@ -189,7 +190,7 @@ public final class ListServerDefaultSingleRecovery extends DefaultSingleRecovera
 			}
 			return reply;
 		} catch (Exception ex) {
-			java.util.logging.Logger.getLogger(ListServerDefaultSingleRecovery.class.getName()).log(Level.SEVERE, null,
+			java.util.logging.Logger.getLogger(ListServerSequentialRecovery.class.getName()).log(Level.SEVERE, null,
 					ex);
 			return null;
 		}

@@ -29,14 +29,12 @@ replica_debug=${7}
 # client means that client was started and --debug will be at position 10
 client_debug=${10} 
 
-# remove this file because if you change hosts.config or system.config you should remove this one.
-#rm -rf currentView
 
 if [[ "$replica_debug" == "--debug" || "$client_debug" == "--debug" ]]; then
     echo "Debug enabled"
-    java "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=9000" -Dlogback.configurationFile="./config/logback-console-file.xml" -cp dist/recovery4smr-20200517.jar:lib/* $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11
+    java "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=9000" -Dlogback.configurationFile="./config/logback.xml" -cp dist/recovery4psmr.jar:lib/* $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11
 else
-    java -Dlogback.configurationFile="./config/logback-console-file.xml" -cp dist/recovery4smr-20200517.jar:lib/* $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11
+    java -Dlogback.configurationFile="./config/logback.xml" -cp dist/recovery4psmr.jar:lib/* $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11
 fi
 
 
